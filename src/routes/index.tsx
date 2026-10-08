@@ -48,6 +48,41 @@ const scores = [
   { title: "Reports & Test Results", score: 48, match: "Match", description: "Variations in test results or excessive repeats may be a sign of data manipulation or efforts to overcharge." },
 ];
 
+const RISK = 87;
+const GAUGE_TICKS = 32;
+const BAR_TICKS = 28;
+
+const gaugeTicks = Array.from({ length: GAUGE_TICKS }, (_, i) => ({
+  rotate: (i + 0.5) * (180 / GAUGE_TICKS) - 90,
+  active: ((i + 0.5) / GAUGE_TICKS) * 100 < RISK,
+}));
+
+function RiskGauge() {
+  return (
+    <div className="relative mx-auto w-full max-w-[300px]">
+      <svg viewBox="0 0 300 168" className="block w-full" aria-hidden="true">
+        {gaugeTicks.map((tick, i) => (
+          <rect key={i} x="145.5" y="6" width="9" height="24" rx="4.5" className={tick.active ? "fill-gauge-active" : "fill-gauge-track"} transform={`rotate(${tick.rotate.toFixed(2)} 150 150)`} />
+        ))}
+      </svg>
+      <div className="absolute inset-0 flex flex-col items-center justify-end pb-[11%] text-center">
+        <p className="font-display text-6xl leading-none sm:text-7xl">{RISK}<span className="ml-1 align-top text-2xl">%</span></p>
+        <p className="mt-3 text-[11px] font-bold uppercase tracking-widest">Risk Probability</p>
+      </div>
+    </div>
+  );
+}
+
+function CombBar({ score, label }: { score: number; label: string }) {
+  return (
+    <div className="mb-5 flex h-6 items-center gap-[3px]" role="img" aria-label={`${label}: ${score}%`}>
+      {Array.from({ length: BAR_TICKS }, (_, i) => (
+        <span key={i} className={`h-full flex-1 rounded-full ${((i + 0.5) / BAR_TICKS) * 100 <= score ? "bg-primary" : "bg-bar-track"}`} />
+      ))}
+    </div>
+  );
+}
+
 function ClaimPage() {
   const [section, setSection] = useState<Section>("findings");
   const [openFinding, setOpenFinding] = useState<number | null>(0);
@@ -78,16 +113,14 @@ function ClaimPage() {
             </div>
             <div className="mt-7 flex items-center justify-between border-t border-border pt-4 text-xs"><span className="text-ink-soft">Adjudication Tier</span><span className="font-bold">High Risk Dossier</span></div>
           </section>
-          <section className="flex min-h-[350px] flex-col justify-between bg-primary p-7 sm:p-10">
-            <div className="flex justify-end">
-              <span className="rounded-full border border-foreground px-3 py-1 text-[11px] font-bold uppercase">Overall Risk: High</span>
+          <section className="flex min-h-[350px] flex-col bg-primary p-7 sm:p-9">
+            <div className="flex items-center gap-2">
+              <span className="size-2 shrink-0 rounded-full bg-alert" aria-hidden="true" />
+              <span className="text-sm font-bold">Overall Risk: High</span>
             </div>
-            <h1 className="mt-9 font-display text-4xl leading-[.95] sm:text-5xl">Claim<br />Overview<span className="inline-block align-top text-xl">↗</span></h1>
-            <p className="mt-6 max-w-[260px] text-sm leading-relaxed">High overall risk detected with 87% confidence, requiring immediate human investigation.</p>
-            <div className="mt-auto border-t border-foreground/25 pt-6">
-              <div className="font-display text-6xl leading-none sm:text-7xl">87<span className="text-3xl">%</span></div>
-              <div className="mt-3 text-xs font-bold uppercase tracking-widest">Risk Probability</div>
-            </div>
+            <h1 className="mt-7 text-[11px] font-bold uppercase tracking-widest">Claim Overview</h1>
+            <div className="mt-4"><RiskGauge /></div>
+            <p className="mx-auto mt-auto max-w-[280px] pt-7 text-center text-sm leading-relaxed">High overall risk detected with 87% confidence, requiring immediate human investigation.</p>
           </section>
         </div>
 
@@ -96,7 +129,7 @@ function ClaimPage() {
           <div className="grid gap-7 md:grid-cols-3 md:gap-0">{scores.map((item, i) => (
             <div key={item.title} className={`flex flex-col ${i > 0 ? "md:border-l md:border-border md:pl-8" : ""} ${i < 2 ? "md:pr-8" : ""}`}>
               <div className="flex min-h-24 items-start justify-between gap-3"><h3 className="max-w-44 font-display text-xl leading-tight">{item.title}</h3><div className="font-display text-4xl leading-none">{item.score}<span className="text-lg">%</span></div></div>
-              <div className="mb-5 h-2 w-full bg-surface-soft"><div className={`h-full ${item.score >= 70 ? "bg-primary" : "bg-foreground"}`} style={{ width: `${item.score}%` }} /></div>
+              <CombBar score={item.score} label={item.title} />
               <span className="mb-3 text-[11px] font-bold uppercase tracking-widest">{item.match}</span>
               <p className="max-w-xs text-sm leading-relaxed text-ink-soft">{item.description}</p>
             </div>
