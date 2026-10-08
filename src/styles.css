@@ -28,6 +28,9 @@
   --color-alert-soft: var(--alert-soft);
   --color-safe: var(--safe);
   --color-safe-soft: var(--safe-soft);
+  --color-gauge-active: var(--gauge-active);
+  --color-gauge-track: var(--gauge-track);
+  --color-bar-track: var(--bar-track);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -81,6 +84,9 @@
   --alert-soft: oklch(0.963 0.033 28);
   --safe: oklch(0.37 0.097 153);
   --safe-soft: oklch(0.93 0.034 154);
+  --gauge-active: oklch(0.83 0.242 136);
+  --gauge-track: oklch(1 0 0);
+  --bar-track: oklch(0.945 0.008 235);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
