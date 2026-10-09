@@ -26,6 +26,7 @@
   --color-surface-soft: var(--surface-soft);
   --color-alert: var(--alert);
   --color-alert-soft: var(--alert-soft);
+  --color-alert-bright: var(--alert-bright);
   --color-safe: var(--safe);
   --color-safe-soft: var(--safe-soft);
   --color-gauge-active: var(--gauge-active);
@@ -78,15 +79,16 @@
   --background: oklch(0.9777 0.0051 247.88);
   --canvas: oklch(0.9777 0.0051 247.88);
   --foreground: oklch(0.1776 0 0);
-  --ink-soft: oklch(0.5624 0 0);
+  --ink-soft: oklch(0.47 0.008 250);
   --surface-soft: oklch(0.9735 0.0076 241.66);
   --alert: oklch(0.5771 0.2152 27.33);
   --alert-soft: oklch(0.952 0.028 25);
+  --alert-bright: oklch(0.68 0.19 25);
   --safe: oklch(0.45 0.115 155);
   --safe-soft: oklch(0.94 0.03 155);
   --gauge-active: oklch(0.7956 0.107 236.17);
-  --gauge-track: oklch(1 0 0 / 0.3);
-  --bar-track: oklch(0.9276 0.0058 264.53);
+  --gauge-track: oklch(1 0 0 / 0.45);
+  --bar-track: oklch(0.885 0.012 250);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.1776 0 0);
   --popover: oklch(1 0 0);
