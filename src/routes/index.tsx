@@ -59,15 +59,15 @@ const gaugeTicks = Array.from({ length: GAUGE_TICKS }, (_, i) => ({
 
 function RiskGauge() {
   return (
-    <div className="relative mx-auto w-full max-w-[300px]">
+    <div className="relative mx-auto w-full max-w-[310px]">
       <svg viewBox="0 0 300 168" className="block w-full" aria-hidden="true">
         {gaugeTicks.map((tick, i) => (
           <rect key={i} x="147.5" y="2" width="5" height="34" rx="2.5" className={tick.active ? "fill-gauge-active" : "fill-gauge-track"} transform={`rotate(${tick.rotate.toFixed(2)} 150 150)`} />
         ))}
       </svg>
-      <div className="absolute inset-0 flex flex-col items-center justify-end pb-[11%] text-center">
-        <p className="font-display text-6xl leading-none sm:text-7xl">{RISK}<span className="ml-1 align-top text-2xl">%</span></p>
-        <p className="mt-3 text-[11px] font-bold uppercase tracking-widest">Risk Probability</p>
+      <div className="absolute inset-0 flex flex-col items-center justify-end pb-[7%] text-center">
+        <p className="font-display text-6xl leading-none sm:text-7xl">{RISK}<span className="ml-1 text-3xl">%</span></p>
+        <p className="mt-3 text-[15px] font-bold">Risk Probability</p>
       </div>
     </div>
   );
@@ -119,14 +119,16 @@ function ClaimPage() {
             </div>
             <div className="mt-7 flex items-center justify-between border-t border-border pt-4 text-xs"><span className="text-ink-soft">Adjudication Tier</span><span className="font-bold">High Risk Dossier</span></div>
           </section>
-          <section className="flex min-h-[350px] flex-col bg-primary p-7 sm:p-9">
+          <section className="flex min-h-[350px] flex-col bg-primary px-7 py-8 sm:px-8 sm:py-10">
+            <h1 className="sr-only">Claim Overview</h1>
             <div className="flex items-center gap-2">
               <span className="size-2 shrink-0 rounded-full bg-alert" aria-hidden="true" />
               <span className="text-sm font-bold">Overall Risk: High</span>
             </div>
-            <h1 className="mt-7 text-[11px] font-bold uppercase tracking-widest">Claim Overview</h1>
-            <div className="mt-4"><RiskGauge /></div>
-            <p className="mx-auto mt-auto max-w-[280px] pt-7 text-center text-sm leading-relaxed">High overall risk detected with 87% confidence, requiring immediate human investigation.</p>
+            <div className="flex flex-1 flex-col items-center justify-center">
+              <RiskGauge />
+              <p className="mt-9 max-w-[280px] text-center text-sm leading-relaxed">High overall risk detected with 87% confidence, requiring immediate human investigation.</p>
+            </div>
           </section>
         </div>
 
