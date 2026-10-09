@@ -73,13 +73,19 @@ function RiskGauge() {
   );
 }
 
+const BAR_VIEW_W = 400;
+const BAR_VIEW_H = 46;
+const BAR_PITCH = BAR_VIEW_W / BAR_TICKS;
+const BAR_TICK_W = 6.5;
+const BAR_TICK_H = 40;
+
 function CombBar({ score, label }: { score: number; label: string }) {
   return (
-    <div className="mb-5 flex h-6 items-center gap-[3px]" role="img" aria-label={`${label}: ${score}%`}>
+    <svg viewBox={`0 0 ${BAR_VIEW_W} ${BAR_VIEW_H}`} className="mb-5 block h-auto w-full" role="img" aria-label={`${label}: ${score}%`} aria-hidden="false">
       {Array.from({ length: BAR_TICKS }, (_, i) => (
-        <span key={i} className={`h-full flex-1 rounded-full ${((i + 0.5) / BAR_TICKS) * 100 <= score ? "bg-primary" : "bg-bar-track"}`} />
+        <rect key={i} x={(i * BAR_PITCH).toFixed(2)} y="3" width={BAR_TICK_W} height={BAR_TICK_H} rx={BAR_TICK_W / 2} className={((i + 0.5) / BAR_TICKS) * 100 <= score ? "fill-primary" : "fill-bar-track"} />
       ))}
-    </div>
+    </svg>
   );
 }
 
