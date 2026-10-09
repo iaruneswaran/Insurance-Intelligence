@@ -62,7 +62,7 @@ function RiskGauge() {
     <div className="relative mx-auto w-full max-w-[300px]">
       <svg viewBox="0 0 300 168" className="block w-full" aria-hidden="true">
         {gaugeTicks.map((tick, i) => (
-          <rect key={i} x="145.5" y="6" width="9" height="24" rx="4.5" className={tick.active ? "fill-gauge-active" : "fill-gauge-track"} transform={`rotate(${tick.rotate.toFixed(2)} 150 150)`} />
+          <rect key={i} x="147.5" y="2" width="5" height="34" rx="2.5" className={tick.active ? "fill-gauge-active" : "fill-gauge-track"} transform={`rotate(${tick.rotate.toFixed(2)} 150 150)`} />
         ))}
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-end pb-[11%] text-center">
