@@ -65,7 +65,7 @@ function RiskGauge() {
           <rect key={i} x="147.5" y="2" width="5" height="34" rx="2.5" className={tick.active ? "fill-gauge-active" : "fill-gauge-track"} transform={`rotate(${tick.rotate.toFixed(2)} 150 150)`} />
         ))}
       </svg>
-      <div className="absolute inset-0 flex flex-col items-center justify-end pb-[7%] text-center">
+      <div className="absolute inset-0 flex translate-y-10 flex-col items-center justify-end pb-[7%] text-center">
         <p className="font-display text-6xl leading-none sm:text-7xl">{RISK}<span className="ml-1 text-3xl">%</span></p>
         <p className="mt-3 text-[15px] font-bold">Risk Probability</p>
       </div>
