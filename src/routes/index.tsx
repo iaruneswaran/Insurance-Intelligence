@@ -50,7 +50,7 @@ const scores = [
 
 const RISK = 87;
 const GAUGE_TICKS = 32;
-const BAR_TICKS = 28;
+const BAR_TICKS = 32;
 
 const gaugeTicks = Array.from({ length: GAUGE_TICKS }, (_, i) => ({
   rotate: (i + 0.5) * (180 / GAUGE_TICKS) - 90,
