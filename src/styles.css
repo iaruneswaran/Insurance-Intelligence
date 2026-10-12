@@ -19,10 +19,13 @@
  */
 
 @theme inline {
+<<<<<<< HEAD
   --text-xs: 15px;
   --text-xs--line-height: calc(15px * 1.5);
   --text-sm: 15px;
   --text-sm--line-height: calc(15px * 1.5);
+=======
+>>>>>>> 47870d2fa92f4c13b063b936e1cad6ac15244545
   --font-sans: "DM Sans", sans-serif;
   --font-display: "Space Grotesk", sans-serif;
   --color-canvas: var(--canvas);
@@ -134,7 +137,10 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
+<<<<<<< HEAD
     font-size: 15px;
+=======
+>>>>>>> 47870d2fa92f4c13b063b936e1cad6ac15244545
   }
 }
 
@@ -143,6 +149,7 @@
   background-size: 28px 28px;
 }
 
+<<<<<<< HEAD
 @keyframes sparkle-pulse {
   0%, 100% {
     transform: scale(1);
@@ -173,6 +180,8 @@
   animation: sparkle-float 2s ease-in-out infinite;
 }
 
+=======
+>>>>>>> 47870d2fa92f4c13b063b936e1cad6ac15244545
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }
